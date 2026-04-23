@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#000000" />
+<title>NOISE #1</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+<div id="game">
+
+  <!-- Entry overlay ─────────────────────── -->
+  <div id="enter-overlay">
+    <div id="enter-title-block">
+      <div id="enter-title">NOISE #2</div>
+      <div id="enter-sub">rhythm interface</div>
+    </div>
+    <button id="enter-button">ENTER</button>
+  </div>
+
+  <!-- Transport ─────────────────────────── -->
+  <div id="transport">
+    <span id="title">NOISE—1</span>
+    <div class="transport-right">
+    <a href="settings.html" id="settings-link">SETTINGS</a>
+    <button id="play-btn">
+      <span class="icon" id="play-icon">▶</span>
+      <span id="play-label">PLAY</span>
+    </button>
+    </div>
+  </div>
+
+  <!-- Columns ───────────────────────────── -->
+  <div class="column" id="col-0"></div>
+  <div class="column" id="col-1"></div>
+  <div class="column" id="col-2"></div>
+  <div class="column" id="col-3"></div>
+
+  <!-- Hit line ──────────────────────────── -->
+  <div id="hit-line"></div>
+  <div id="hit-line-mid"></div>
+
+  <!-- Tap buttons ───────────────────────── -->
+  <div id="controls">
+    <div class="btn" data-col="0"><span class="btn-label">I</span></div>
+    <div class="btn" data-col="1"><span class="btn-label">II</span></div>
+    <div class="btn" data-col="2"><span class="btn-label">III</span></div>
+    <div class="btn" data-col="3"><span class="btn-label">IV</span></div>
+  </div>
+
+</div>
+
+<script src="https://cdn.cycling74.com/rnbo/1.4.2/rnbo.min.js"></script>
+<script src="js/guardrails.js"></script>
+<script src="js/db.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+/* ── Settings page overrides ──────────────────
+   Loaded after style.css — resets game-specific
+   body rules and adds settings layout.          */
+
+body {
+  position: relative;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* ── Header ───────────────────────────────── */
+#settings-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #000;
+  border-bottom: 1px solid #151515;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+#back-link {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+  transition: color 0.12s;
+}
+#back-link:hover { color: rgba(255,255,255,0.8); }
+
+#settings-title {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  flex: 1;
+}
+
+/* ── Content ──────────────────────────────── */
+#settings-content {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 32px 20px calc(48px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ── Section ──────────────────────────────── */
+.section-label {
+  font-size: 8px;
+  letter-spacing: 0.45em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #151515;
+}
+
+/* ── Upload area ──────────────────────────── */
+.upload-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+#folder-input { display: none; }
+
+#upload-btn {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 10px 20px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.12s, border-color 0.12s;
+  flex-shrink: 0;
+}
+#upload-btn:hover    { border-color: rgba(255,255,255,0.65); }
+#upload-btn:disabled { opacity: 0.35; cursor: default; }
+
+#upload-status {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── Sample list ──────────────────────────── */
+#sample-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.sample-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid #0e0e0e;
+}
+
+.sample-name {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.sample-size {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.22);
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.list-empty {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.22);
+  padding: 8px 0;
+}
+
+#clear-btn {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px 0 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.12s;
+}
+#clear-btn:hover { color: rgba(255,255,255,0.7); }
+
+/* ── Param rows ───────────────────────────── */
+.param-row {
+  margin-bottom: 28px;
+}
+.param-row:last-of-type { margin-bottom: 0; }
+
+.param-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.param-label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+}
+
+.param-value {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.75);
+  min-width: 52px;
+  text-align: right;
+}
+
+/* ── Range slider ─────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: 100%;
+  height: 24px;         /* tap target */
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+}
+
+/* Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+}
+input[type="range"]::-moz-range-track {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+}
+
+/* Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 0;
+  margin-top: -6.5px;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border: none;
+  border-radius: 0;
+}
+
+/* ── Reset button ─────────────────────────── */
+#reset-btn {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 16px 0 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.12s;
+}
+#reset-btn:hover { color: rgba(255,255,255,0.7); }

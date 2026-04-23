@@ -1,0 +1,251 @@
+/* ── Reset & base ─────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --mono: 'Space Mono', 'Courier New', monospace;
+  --transport-h: 52px;
+  --controls-h: 88px;
+}
+
+body {
+  background: #000;
+  overflow: hidden;
+  font-family: var(--mono);
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+  /* prevent iOS overscroll bounce */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Game container ───────────────────────── */
+#game {
+  position: fixed;
+  inset: 0;
+}
+
+/* ── Transport bar ────────────────────────── */
+#transport {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: var(--transport-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px 0 20px;
+  z-index: 20;
+  background: #000;
+  border-bottom: 1px solid #151515;
+}
+
+#title {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+}
+
+#play-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.28);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  height: 30px;
+  padding: 0 14px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+#play-btn .icon { font-size: 7px; line-height: 1; }
+
+.transport-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#settings-link {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: color 0.12s;
+}
+#settings-link:hover { color: rgba(255,255,255,0.65); }
+
+#play-btn.playing {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+
+/* ── Columns ──────────────────────────────── */
+.column {
+  position: absolute;
+  width: 25%;
+  overflow: hidden;
+}
+
+#col-0 { left: 0%;  border-right: 1px solid #111; }
+#col-1 { left: 25%; border-right: 1px solid #111; }
+#col-2 { left: 50%; border-right: 1px solid #111; }
+#col-3 { left: 75%; border-right: 1px solid #111; }
+
+/* ── Falling blocks ───────────────────────── */
+.block {
+  position: absolute;
+  left: 48px; right: 48px;
+  height: 52px;
+  background: #fff;
+}
+
+@keyframes hit-flash {
+  0%   { opacity: 1; transform: scaleY(1);    box-shadow: none; }
+  35%  { opacity: 1; transform: scaleY(1.08); box-shadow: 0 0 28px rgba(255,255,255,0.85); }
+  100% { opacity: 0; transform: scaleY(0.65); box-shadow: none; }
+}
+
+.block.hit {
+  animation: hit-flash 0.2s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ── Hit line ─────────────────────────────── */
+#hit-line {
+  position: absolute;
+  left: 0; width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.5);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* small cross-hairs at column edges */
+#hit-line::before,
+#hit-line::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  width: 1px;
+  height: 11px;
+  background: rgba(255,255,255,0.45);
+}
+#hit-line::before { left: 25%; }
+#hit-line::after  { left: 75%; }
+
+/* extra tick at 50% */
+#hit-line-mid {
+  position: absolute;
+  top: -5px; left: 50%;
+  width: 1px; height: 11px;
+  background: rgba(255,255,255,0.45);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ── Control buttons ──────────────────────── */
+#controls {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  display: flex;
+  z-index: 10;
+  border-top: 1px solid #151515;
+  /* iOS home-bar clearance */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.btn {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-right: 1px solid #111;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.04s;
+  min-height: var(--controls-h);
+}
+
+.btn:last-child { border-right: none; }
+
+.btn-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.18);
+  transition: color 0.05s;
+  pointer-events: none;
+}
+
+.btn.active { background: rgba(255,255,255,0.07); }
+.btn.active .btn-label { color: rgba(255,255,255,0.7); }
+
+/* ── Enter / loading overlay ──────────────── */
+#enter-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  z-index: 100;
+}
+
+#enter-title-block { text-align: center; }
+
+#enter-title {
+  font-size: clamp(2.4rem, 12vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+#enter-sub {
+  margin-top: 14px;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+}
+
+#enter-button {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  padding: 16px 44px;
+  border: 1px solid rgba(255,255,255,0.38);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.14s, border-color 0.14s, color 0.14s;
+}
+
+#enter-button:active {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}

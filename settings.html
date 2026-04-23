@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#000000" />
+<title>NOISE #2 — Settings</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style/style.css" />
+<link rel="stylesheet" href="style/settings.css" />
+</head>
+<body>
+
+  <!-- Header ──────────────────────────────── -->
+  <div id="settings-header">
+    <a href="index.html" id="back-link">← BACK</a>
+    <span id="settings-title">SETTINGS</span>
+  </div>
+
+  <!-- Content ─────────────────────────────── -->
+  <div id="settings-content">
+
+    <!-- ── SAMPLES ───────────────────────── -->
+    <section>
+      <p class="section-label">SAMPLES</p>
+
+      <div class="upload-row">
+        <!-- webkitdirectory for folder pick; multiple for individual files -->
+        <input type="file" id="folder-input"
+               webkitdirectory mozdirectory
+               accept=".wav,.aif,.aiff,.mp3,.ogg,.flac"
+               multiple />
+        <button id="upload-btn">SELECT FOLDER</button>
+        <span id="upload-status"></span>
+      </div>
+
+      <div id="sample-list"></div>
+      <button id="clear-btn" style="display:none">CLEAR CUSTOM SAMPLES</button>
+    </section>
+
+    <!-- ── BLOCK GENERATOR ───────────────── -->
+    <section>
+      <p class="section-label">BLOCK GENERATOR</p>
+
+      <div class="param-row">
+        <div class="param-header">
+          <span class="param-label">SPEED</span>
+          <span class="param-value" id="speed-val"></span>
+        </div>
+        <input type="range" id="speed"
+               min="0.5" max="8" step="0.1" />
+      </div>
+
+      <div class="param-row">
+        <div class="param-header">
+          <span class="param-label">SPAWN INTERVAL</span>
+          <span class="param-value" id="spawn-ms-val"></span>
+        </div>
+        <input type="range" id="spawn-ms"
+               min="300" max="3000" step="50" />
+      </div>
+
+      <div class="param-row">
+        <div class="param-header">
+          <span class="param-label">HIT WINDOW</span>
+          <span class="param-value" id="hit-window-val"></span>
+        </div>
+        <input type="range" id="hit-window"
+               min="5" max="80" step="5" />
+      </div>
+
+      <button id="reset-btn">RESET DEFAULTS</button>
+    </section>
+
+  </div>
+
+<script src="js/db.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>
