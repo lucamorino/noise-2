@@ -108,9 +108,27 @@ body {
 /* ── Falling blocks ───────────────────────── */
 .block {
   position: absolute;
+  /* height set by JS; left/right per type below */
+}
+
+/* Trigger: solid fill, plays once on tap */
+.block-trigger {
   left: 48px; right: 48px;
-  height: 52px;
   background: #fff;
+}
+
+/* Gate: thinner, border-only rails — height encodes duration (2–16 × BLOCK_H) */
+.block-gate {
+  left: 52px; right: 52px;
+  background: transparent;
+  border-left:  1.5px solid rgba(255,255,255,0.7);
+  border-right: 1.5px solid rgba(255,255,255,0.7);
+}
+
+/* Gate held: player is holding the button — fill to signal active loop */
+.block-gate.held {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
 }
 
 @keyframes hit-flash {
