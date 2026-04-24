@@ -462,7 +462,6 @@ function gameLoop(ts) {
 function startTransport() {
   isPlaying   = true;
   nextSpawn   = [0, 0, 0, 0];  // all columns spawn immediately on first frame
-  genPhaseEnd = 0;              // force phase pick on first frame
   animFrameId = requestAnimationFrame(gameLoop);
   rnboStart(1);
   playIcon.textContent  = '■';
