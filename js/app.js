@@ -1,12 +1,27 @@
 // ─── Constants ────────────────────────────────────────────────────────────────
 const TRANSPORT_H  = 52;
 const BLOCK_H      = 52;        // base unit height (trigger = 1×, gate = 2–16×)
-const GATE_PROB    = 0.35;      // probability a spawned block is a gate
+
+// Generator phases: [spawnMult, gateProb, minDurMs, maxDurMs]
+// spawnMult scales SPAWN_MS — lower = denser; gateProb 0=all triggers, 1=all gates
+const GEN_PHASES = [
+  [0.25, 0.0,  2000,  5000],  // dense  · only triggers
+  [0.25, 1.0,  3000,  7000],  // dense  · only gates
+  [0.28, 0.5,  3000,  7000],  // dense  · mixed
+  [0.7,  0.1,  5000, 12000],  // medium · mostly triggers
+  [0.7,  0.9,  5000, 12000],  // medium · mostly gates
+  [1.0,  0.5,  5000, 12000],  // normal · mixed  (baseline)
+  [1.0,  0.0,  5000, 10000],  // normal · only triggers
+  [1.0,  1.0,  5000, 10000],  // normal · only gates
+  [2.5,  0.4,  5000, 12000],  // sparse · slightly trigger-heavy
+  [3.5,  0.5,  4000, 10000],  // sparse · mixed
+  [8.0,  0.5,  2000,  5000],  // near silence
+];
 
 // Mutable params — loaded from localStorage, editable via settings page
 const _p       = JSON.parse(localStorage.getItem('noise-params') || '{}');
 let SPEED      = _p.speed      ?? 2.5;
-let SPAWN_MS   = _p.spawnMs    ?? 1100;
+let SPAWN_MS   = _p.spawnMs    ?? 2100;
 let HIT_WINDOW = _p.hitWindow  ?? 30;
 
 const SAMPLE_FILES = [
@@ -215,9 +230,18 @@ let animFrameId = null;
 // Per-column polyphonic spawn timers
 let nextSpawn = [0, 0, 0, 0];
 
+// Generator phase state
+let genPhaseIdx  = 5;    // index into GEN_PHASES (start at "normal mixed")
+let genSpawnMult = 1.0;
+let genGateProb  = 0.5;
+let genPhaseEnd  = 0;    // timestamp when current phase expires
+
 // Per-column gate state (one held gate per column max)
-const gateBlock  = [null, null, null, null];  // held block object
-const gateSource = [null, null, null, null];  // looping AudioBufferSourceNode
+const gateBlock         = [null, null, null, null];  // held block object
+const gateSource        = [null, null, null, null];  // looping AudioBufferSourceNode
+const gateScoreInterval = [null, null, null, null];  // 1pt/sec interval while held
+
+let score = 0;
 
 // ─── DOM ──────────────────────────────────────────────────────────────────────
 const cols       = [0,1,2,3].map(i => document.getElementById('col-' + i));
@@ -228,6 +252,24 @@ const playLabel  = document.getElementById('play-label');
 const hitLineEl  = document.getElementById('hit-line');
 const hitLineMid = document.getElementById('hit-line-mid');
 const controlsEl = document.getElementById('controls');
+const scoreEl    = document.getElementById('score');
+
+// ─── Generator phases ─────────────────────────────────────────────────────────
+function pickNextPhase(ts) {
+  let idx;
+  do { idx = Math.floor(Math.random() * GEN_PHASES.length); } while (idx === genPhaseIdx);
+  genPhaseIdx  = idx;
+  const [mult, gp, minDur, maxDur] = GEN_PHASES[idx];
+  genSpawnMult = mult;
+  genGateProb  = gp;
+  genPhaseEnd  = ts + minDur + Math.random() * (maxDur - minDur);
+}
+
+// ─── Score ────────────────────────────────────────────────────────────────────
+function addScore(n) {
+  score += n;
+  scoreEl.textContent = score;
+}
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
 function applyLayout() {
@@ -367,7 +409,7 @@ function rnboStart(val) {
 
 // ─── Block spawning ───────────────────────────────────────────────────────────
 function spawnBlock(col) {
-  const isGate = Math.random() < GATE_PROB;
+  const isGate = Math.random() < genGateProb;
   // gate: random multiplier 2–16 × BLOCK_H; trigger: 1 × BLOCK_H
   const mult   = isGate ? (Math.floor(Math.random() * 15) + 2) : 1;
   const height = BLOCK_H * mult;
@@ -385,11 +427,14 @@ function spawnBlock(col) {
 function gameLoop(ts) {
   if (!isPlaying) return;
 
+  // Advance generator phase when its duration expires
+  if (ts >= genPhaseEnd) pickNextPhase(ts);
+
   // Each column has its own independent spawn timer (±20% jitter)
   for (let col = 0; col < 4; col++) {
     if (ts >= nextSpawn[col]) {
       spawnBlock(col);
-      nextSpawn[col] = ts + SPAWN_MS * (0.8 + Math.random() * 0.4);
+      nextSpawn[col] = ts + SPAWN_MS * genSpawnMult * (0.8 + Math.random() * 0.4);
     }
   }
 
@@ -403,6 +448,13 @@ function gameLoop(ts) {
     }
   }
 
+  // Auto-release gate blocks once they've fully passed the hit zone
+  for (let col = 0; col < 4; col++) {
+    if (gateBlock[col] && gateBlock[col].y > hitLineY + HIT_WINDOW) {
+      releaseGate(col);
+    }
+  }
+
   animFrameId = requestAnimationFrame(gameLoop);
 }
 
@@ -410,6 +462,7 @@ function gameLoop(ts) {
 function startTransport() {
   isPlaying   = true;
   nextSpawn   = [0, 0, 0, 0];  // all columns spawn immediately on first frame
+  genPhaseEnd = 0;              // force phase pick on first frame
   animFrameId = requestAnimationFrame(gameLoop);
   rnboStart(1);
   playIcon.textContent  = '■';
@@ -427,9 +480,12 @@ function stopTransport() {
   // Release all held gates
   for (let col = 0; col < 4; col++) {
     stopGateAudio(col);
+    if (gateScoreInterval[col]) { clearInterval(gateScoreInterval[col]); gateScoreInterval[col] = null; }
     if (gateBlock[col]) { gateBlock[col].el.remove(); gateBlock[col] = null; }
   }
 
+  score = 0;
+  scoreEl.textContent = 0;
   rnboStart(0);
   playIcon.textContent  = '▶';
   playLabel.textContent = 'PLAY';
@@ -449,17 +505,18 @@ function checkHit(col) {
 
     // Block overlaps hit zone: bottom is below zone-top AND top is above zone-bottom
     if (b.y + b.height >= hitLineY - HIT_WINDOW && b.y <= hitLineY + HIT_WINDOW) {
-      blocks.splice(i, 1);
-
       if (b.type === 'trigger') {
+        blocks.splice(i, 1);
         b.el.classList.add('hit');
         b.el.addEventListener('animationend', () => b.el.remove(), { once: true });
         playRandomSample();
-      } else {
-        // Gate: freeze block in place, start looping audio
+        addScore(2);
+      } else if (!gateBlock[col]) {
+        // Gate: keep falling, start looping audio until it exits the hit zone
         b.el.classList.add('held');
         gateBlock[col] = b;
         startGateAudio(col);
+        gateScoreInterval[col] = setInterval(() => addScore(1), 1000);
       }
       return;
     }
@@ -471,11 +528,9 @@ function checkHit(col) {
 function releaseGate(col) {
   if (!gateBlock[col]) return;
   stopGateAudio(col);
-  const b = gateBlock[col];
+  if (gateScoreInterval[col]) { clearInterval(gateScoreInterval[col]); gateScoreInterval[col] = null; }
+  gateBlock[col].el.classList.remove('held');
   gateBlock[col] = null;
-  b.el.classList.remove('held');
-  b.el.classList.add('hit');
-  b.el.addEventListener('animationend', () => b.el.remove(), { once: true });
 }
 
 // ─── Control buttons ──────────────────────────────────────────────────────────

@@ -1,5 +1,5 @@
 // ─── Default params (must match app.js defaults) ──────────────────────────────
-const DEFAULTS = { speed: 2.5, spawnMs: 1100, hitWindow: 30 };
+const DEFAULTS = { speed: 2.5, spawnMs: 2100, hitWindow: 30 };
 const PARAM_KEY = 'noise-params';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

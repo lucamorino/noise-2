@@ -48,6 +48,16 @@ body {
   text-transform: uppercase;
 }
 
+#score {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.75);
+  pointer-events: none;
+}
+
 #play-btn {
   display: flex;
   align-items: center;
