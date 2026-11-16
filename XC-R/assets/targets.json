@@ -1,0 +1,752 @@
+{
+  "measuredAt": "2026-11-11T20:33:26.588Z",
+  "sampleRate": 48000,
+  "grid": 5,
+  "descriptors": [
+    {
+      "key": "sharpness",
+      "label": "Sharpness",
+      "min": 0.807,
+      "max": 2.38
+    },
+    {
+      "key": "loudness",
+      "label": "Loudness",
+      "min": 82,
+      "max": 102
+    },
+    {
+      "key": "spectralCentroid",
+      "label": "Centroid",
+      "min": 0,
+      "max": 4270
+    },
+    {
+      "key": "dissonance",
+      "label": "Dissonance",
+      "min": 0,
+      "max": 0.571
+    },
+    {
+      "key": "spectralComplexity",
+      "label": "Complexity",
+      "min": 0,
+      "max": 68.2
+    }
+  ],
+  "score": [
+    19,
+    2,
+    17,
+    24,
+    13,
+    0,
+    7,
+    1,
+    10,
+    14,
+    15
+  ],
+  "targets": [
+    {
+      "id": 0,
+      "name": "T01",
+      "x": 0.1,
+      "y": 0.1,
+      "values": {
+        "sharpness": 1.821,
+        "loudness": 97.74,
+        "spectralCentroid": 2369,
+        "dissonance": 0.4614,
+        "spectralComplexity": 52.02
+      },
+      "sd": {
+        "sharpness": 0.0359,
+        "loudness": 0.0568,
+        "spectralCentroid": 110,
+        "dissonance": 0.0229,
+        "spectralComplexity": 3.35
+      },
+      "drift": {
+        "sharpness": 0.038,
+        "loudness": 0.207,
+        "spectralCentroid": 308,
+        "dissonance": 0.042,
+        "spectralComplexity": 0.567
+      },
+      "usable": true
+    },
+    {
+      "id": 1,
+      "name": "T02",
+      "x": 0.3,
+      "y": 0.1,
+      "values": {
+        "sharpness": 1.449,
+        "loudness": 97.15,
+        "spectralCentroid": 1033,
+        "dissonance": 0.00108,
+        "spectralComplexity": 6
+      },
+      "sd": {
+        "sharpness": 0.004,
+        "loudness": 0.00244,
+        "spectralCentroid": 2.58,
+        "dissonance": 4.86e-8,
+        "spectralComplexity": 0
+      },
+      "drift": {
+        "sharpness": 0.002,
+        "loudness": 0.0543,
+        "spectralCentroid": 5.84,
+        "dissonance": 0.00000596,
+        "spectralComplexity": 0
+      },
+      "usable": true
+    },
+    {
+      "id": 2,
+      "name": "T03",
+      "x": 0.5,
+      "y": 0.1,
+      "values": {
+        "sharpness": 1.621,
+        "loudness": 99.9,
+        "spectralCentroid": 1555,
+        "dissonance": 0,
+        "spectralComplexity": 5
+      },
+      "sd": {
+        "sharpness": 0.00458,
+        "loudness": 0.000832,
+        "spectralCentroid": 6.57,
+        "dissonance": 0,
+        "spectralComplexity": 0
+      },
+      "drift": {
+        "sharpness": 0.00467,
+        "loudness": 0.00752,
+        "spectralCentroid": 40.4,
+        "dissonance": 0,
+        "spectralComplexity": 0
+      },
+      "usable": true
+    },
+    {
+      "id": 3,
+      "name": "T04",
+      "x": 0.7,
+      "y": 0.1,
+      "values": {
+        "sharpness": 1.631,
+        "loudness": 99.9,
+        "spectralCentroid": 1577,
+        "dissonance": 0.03312,
+        "spectralComplexity": 6.7
+      },
+      "sd": {
+        "sharpness": 0.0197,
+        "loudness": 0.0177,
+        "spectralCentroid": 58.7,
+        "dissonance": 0.125,
+        "spectralComplexity": 7.68
+      },
+      "drift": {
+        "sharpness": 0.022,
+        "loudness": 0.00515,
+        "spectralCentroid": 72.2,
+        "dissonance": 0.0662,
+        "spectralComplexity": 3.4
+      },
+      "usable": false
+    },
+    {
+      "id": 4,
+      "name": "T05",
+      "x": 0.9,
+      "y": 0.1,
+      "values": {
+        "sharpness": 1.72,
+        "loudness": 91.12,
+        "spectralCentroid": 2132,
+        "dissonance": 0.06447,
+        "spectralComplexity": 14.2
+      },
+      "sd": {
+        "sharpness": 0.00482,
+        "loudness": 0.0219,
+        "spectralCentroid": 7.03,
+        "dissonance": 0.0172,
+        "spectralComplexity": 0.952
+      },
+      "drift": {
+        "sharpness": 0.133,
+        "loudness": 6.42,
+        "spectralCentroid": 613,
+        "dissonance": 0.129,
+        "spectralComplexity": 18.4
+      },
+      "usable": false
+    },
+    {
+      "id": 5,
+      "name": "T06",
+      "x": 0.9,
+      "y": 0.3,
+      "values": {
+        "sharpness": 2.197,
+        "loudness": 98.31,
+        "spectralCentroid": 3750,
+        "dissonance": 0.4969,
+        "spectralComplexity": 59.92
+      },
+      "sd": {
+        "sharpness": 0.071,
+        "loudness": 0.198,
+        "spectralCentroid": 102,
+        "dissonance": 0.00188,
+        "spectralComplexity": 3.46
+      },
+      "drift": {
+        "sharpness": 0.15,
+        "loudness": 0.0255,
+        "spectralCentroid": 831,
+        "dissonance": 0.00119,
+        "spectralComplexity": 0.433
+      },
+      "usable": false
+    },
+    {
+      "id": 6,
+      "name": "T07",
+      "x": 0.7,
+      "y": 0.3,
+      "values": {
+        "sharpness": 2.019,
+        "loudness": 98.81,
+        "spectralCentroid": 2702,
+        "dissonance": 0.4831,
+        "spectralComplexity": 53.52
+      },
+      "sd": {
+        "sharpness": 0.0726,
+        "loudness": 0.099,
+        "spectralCentroid": 44.7,
+        "dissonance": 0.0269,
+        "spectralComplexity": 4.28
+      },
+      "drift": {
+        "sharpness": 0.37,
+        "loudness": 0.395,
+        "spectralCentroid": 1530,
+        "dissonance": 0.0269,
+        "spectralComplexity": 1.03
+      },
+      "usable": false
+    },
+    {
+      "id": 7,
+      "name": "T08",
+      "x": 0.5,
+      "y": 0.3,
+      "values": {
+        "sharpness": 1.215,
+        "loudness": 99.33,
+        "spectralCentroid": 548.2,
+        "dissonance": 0.1099,
+        "spectralComplexity": 20.2
+      },
+      "sd": {
+        "sharpness": 0.0064,
+        "loudness": 0.00959,
+        "spectralCentroid": 4.43,
+        "dissonance": 0.00518,
+        "spectralComplexity": 0.496
+      },
+      "drift": {
+        "sharpness": 0.00467,
+        "loudness": 0.0272,
+        "spectralCentroid": 11.8,
+        "dissonance": 0.015,
+        "spectralComplexity": 0.467
+      },
+      "usable": true
+    },
+    {
+      "id": 8,
+      "name": "T09",
+      "x": 0.3,
+      "y": 0.3,
+      "values": {
+        "sharpness": 1.484,
+        "loudness": 93.03,
+        "spectralCentroid": 1165,
+        "dissonance": 0.3578,
+        "spectralComplexity": 35.28
+      },
+      "sd": {
+        "sharpness": 0.0534,
+        "loudness": 0.248,
+        "spectralCentroid": 94,
+        "dissonance": 0.073,
+        "spectralComplexity": 3.3
+      },
+      "drift": {
+        "sharpness": 0.495,
+        "loudness": 11.4,
+        "spectralCentroid": 922,
+        "dissonance": 0.178,
+        "spectralComplexity": 36
+      },
+      "usable": false
+    },
+    {
+      "id": 9,
+      "name": "T10",
+      "x": 0.1,
+      "y": 0.3,
+      "values": {
+        "sharpness": 1.826,
+        "loudness": 99.13,
+        "spectralCentroid": 1871,
+        "dissonance": 0.4599,
+        "spectralComplexity": 59.08
+      },
+      "sd": {
+        "sharpness": 0.0314,
+        "loudness": 0.233,
+        "spectralCentroid": 59,
+        "dissonance": 0.0272,
+        "spectralComplexity": 6.37
+      },
+      "drift": {
+        "sharpness": 0.062,
+        "loudness": 0.717,
+        "spectralCentroid": 230,
+        "dissonance": 0.0638,
+        "spectralComplexity": 8.7
+      },
+      "usable": false
+    },
+    {
+      "id": 10,
+      "name": "T11",
+      "x": 0.1,
+      "y": 0.5,
+      "values": {
+        "sharpness": 1.18,
+        "loudness": 99.1,
+        "spectralCentroid": 501.1,
+        "dissonance": 0.07096,
+        "spectralComplexity": 16.93
+      },
+      "sd": {
+        "sharpness": 0.00854,
+        "loudness": 0.00837,
+        "spectralCentroid": 3.56,
+        "dissonance": 0.00745,
+        "spectralComplexity": 0.499
+      },
+      "drift": {
+        "sharpness": 0.0197,
+        "loudness": 0.154,
+        "spectralCentroid": 25.7,
+        "dissonance": 0.00339,
+        "spectralComplexity": 1.2
+      },
+      "usable": true
+    },
+    {
+      "id": 11,
+      "name": "T12",
+      "x": 0.3,
+      "y": 0.5,
+      "values": {
+        "sharpness": 1.969,
+        "loudness": 98.98,
+        "spectralCentroid": 2484,
+        "dissonance": 0.3142,
+        "spectralComplexity": 32.37
+      },
+      "sd": {
+        "sharpness": 0.0431,
+        "loudness": 0.083,
+        "spectralCentroid": 59.2,
+        "dissonance": 0.141,
+        "spectralComplexity": 3.42
+      },
+      "drift": {
+        "sharpness": 0.304,
+        "loudness": 0.935,
+        "spectralCentroid": 1430,
+        "dissonance": 0.36,
+        "spectralComplexity": 45.2
+      },
+      "usable": false
+    },
+    {
+      "id": 12,
+      "name": "T13",
+      "x": 0.5,
+      "y": 0.5,
+      "values": {
+        "sharpness": 1.04,
+        "loudness": 84.34,
+        "spectralCentroid": 387.8,
+        "dissonance": 0.02227,
+        "spectralComplexity": 8.6
+      },
+      "sd": {
+        "sharpness": 0.0226,
+        "loudness": 0.109,
+        "spectralCentroid": 4.99,
+        "dissonance": 0.000741,
+        "spectralComplexity": 0.702
+      },
+      "drift": {
+        "sharpness": 0.075,
+        "loudness": 3.63,
+        "spectralCentroid": 108,
+        "dissonance": 0.0445,
+        "spectralComplexity": 4.8
+      },
+      "usable": false
+    },
+    {
+      "id": 13,
+      "name": "T14",
+      "x": 0.7,
+      "y": 0.5,
+      "values": {
+        "sharpness": 1.146,
+        "loudness": 98.86,
+        "spectralCentroid": 444.8,
+        "dissonance": 0.01753,
+        "spectralComplexity": 12.68
+      },
+      "sd": {
+        "sharpness": 0.00657,
+        "loudness": 0.00969,
+        "spectralCentroid": 2.58,
+        "dissonance": 0.0108,
+        "spectralComplexity": 0.482
+      },
+      "drift": {
+        "sharpness": 0.0127,
+        "loudness": 0.159,
+        "spectralCentroid": 18.9,
+        "dissonance": 0.0203,
+        "spectralComplexity": 1.37
+      },
+      "usable": true
+    },
+    {
+      "id": 14,
+      "name": "T15",
+      "x": 0.9,
+      "y": 0.5,
+      "values": {
+        "sharpness": 1.506,
+        "loudness": 99.76,
+        "spectralCentroid": 1078,
+        "dissonance": 0.08861,
+        "spectralComplexity": 16
+      },
+      "sd": {
+        "sharpness": 0.00499,
+        "loudness": 0.00282,
+        "spectralCentroid": 6.71,
+        "dissonance": 0.0000157,
+        "spectralComplexity": 0
+      },
+      "drift": {
+        "sharpness": 0.00233,
+        "loudness": 0.00186,
+        "spectralCentroid": 5.66,
+        "dissonance": 0.000926,
+        "spectralComplexity": 0
+      },
+      "usable": true
+    },
+    {
+      "id": 15,
+      "name": "T16",
+      "x": 0.9,
+      "y": 0.7,
+      "values": {
+        "sharpness": 1.273,
+        "loudness": 99.49,
+        "spectralCentroid": 665.4,
+        "dissonance": 0.002311,
+        "spectralComplexity": 6.683
+      },
+      "sd": {
+        "sharpness": 0.00499,
+        "loudness": 0.00812,
+        "spectralCentroid": 5.2,
+        "dissonance": 0.00000903,
+        "spectralComplexity": 1.68
+      },
+      "drift": {
+        "sharpness": 0.0827,
+        "loudness": 0.228,
+        "spectralCentroid": 128,
+        "dissonance": 0.00324,
+        "spectralComplexity": 1.37
+      },
+      "usable": true
+    },
+    {
+      "id": 16,
+      "name": "T17",
+      "x": 0.7,
+      "y": 0.7,
+      "values": {
+        "sharpness": 1.457,
+        "loudness": 99.16,
+        "spectralCentroid": 1207,
+        "dissonance": 0.3395,
+        "spectralComplexity": 39
+      },
+      "sd": {
+        "sharpness": 0.038,
+        "loudness": 0.0353,
+        "spectralCentroid": 114,
+        "dissonance": 0.0195,
+        "spectralComplexity": 5.13
+      },
+      "drift": {
+        "sharpness": 0.529,
+        "loudness": 0.442,
+        "spectralCentroid": 1390,
+        "dissonance": 0.253,
+        "spectralComplexity": 30
+      },
+      "usable": false
+    },
+    {
+      "id": 17,
+      "name": "T18",
+      "x": 0.5,
+      "y": 0.7,
+      "values": {
+        "sharpness": 0.9882,
+        "loudness": 97.31,
+        "spectralCentroid": 278.5,
+        "dissonance": 0.04746,
+        "spectralComplexity": 9.717
+      },
+      "sd": {
+        "sharpness": 0.0116,
+        "loudness": 0.0331,
+        "spectralCentroid": 3.34,
+        "dissonance": 0.013,
+        "spectralComplexity": 1.02
+      },
+      "drift": {
+        "sharpness": 0.00967,
+        "loudness": 0.536,
+        "spectralCentroid": 6.28,
+        "dissonance": 0.00462,
+        "spectralComplexity": 1.43
+      },
+      "usable": true
+    },
+    {
+      "id": 18,
+      "name": "T19",
+      "x": 0.3,
+      "y": 0.7,
+      "values": {
+        "sharpness": 1.717,
+        "loudness": 99,
+        "spectralCentroid": 1619,
+        "dissonance": 0.4144,
+        "spectralComplexity": 54.65
+      },
+      "sd": {
+        "sharpness": 0.0504,
+        "loudness": 0.097,
+        "spectralCentroid": 36.9,
+        "dissonance": 0.0547,
+        "spectralComplexity": 3.88
+      },
+      "drift": {
+        "sharpness": 0.0473,
+        "loudness": 0.496,
+        "spectralCentroid": 236,
+        "dissonance": 0.141,
+        "spectralComplexity": 16.7
+      },
+      "usable": false
+    },
+    {
+      "id": 19,
+      "name": "T20",
+      "x": 0.1,
+      "y": 0.7,
+      "values": {
+        "sharpness": 1.147,
+        "loudness": 98.74,
+        "spectralCentroid": 455.4,
+        "dissonance": 0.0428,
+        "spectralComplexity": 13.03
+      },
+      "sd": {
+        "sharpness": 0.0102,
+        "loudness": 0.011,
+        "spectralCentroid": 2.49,
+        "dissonance": 0.00695,
+        "spectralComplexity": 0.862
+      },
+      "drift": {
+        "sharpness": 0.0113,
+        "loudness": 0.191,
+        "spectralCentroid": 15.6,
+        "dissonance": 0.00549,
+        "spectralComplexity": 0.667
+      },
+      "usable": true
+    },
+    {
+      "id": 20,
+      "name": "T21",
+      "x": 0.1,
+      "y": 0.9,
+      "values": {
+        "sharpness": 1.363,
+        "loudness": 97.42,
+        "spectralCentroid": 941.8,
+        "dissonance": 0.2397,
+        "spectralComplexity": 35.75
+      },
+      "sd": {
+        "sharpness": 0.0429,
+        "loudness": 0.206,
+        "spectralCentroid": 57.6,
+        "dissonance": 0.00885,
+        "spectralComplexity": 2.1
+      },
+      "drift": {
+        "sharpness": 0.462,
+        "loudness": 0.0712,
+        "spectralCentroid": 1020,
+        "dissonance": 0.432,
+        "spectralComplexity": 46.6
+      },
+      "usable": false
+    },
+    {
+      "id": 21,
+      "name": "T22",
+      "x": 0.3,
+      "y": 0.9,
+      "values": {
+        "sharpness": 1.669,
+        "loudness": 98.59,
+        "spectralCentroid": 1496,
+        "dissonance": 0.2611,
+        "spectralComplexity": 30.6
+      },
+      "sd": {
+        "sharpness": 0.0696,
+        "loudness": 0.444,
+        "spectralCentroid": 90.6,
+        "dissonance": 0.0115,
+        "spectralComplexity": 1.49
+      },
+      "drift": {
+        "sharpness": 0.0587,
+        "loudness": 2.05,
+        "spectralCentroid": 302,
+        "dissonance": 0.42,
+        "spectralComplexity": 41.2
+      },
+      "usable": false
+    },
+    {
+      "id": 22,
+      "name": "T23",
+      "x": 0.5,
+      "y": 0.9,
+      "values": {
+        "sharpness": 1.605,
+        "loudness": 99.42,
+        "spectralCentroid": 1288,
+        "dissonance": 0.2751,
+        "spectralComplexity": 37.13
+      },
+      "sd": {
+        "sharpness": 0.0295,
+        "loudness": 0.284,
+        "spectralCentroid": 47.2,
+        "dissonance": 0.0461,
+        "spectralComplexity": 7.05
+      },
+      "drift": {
+        "sharpness": 0.026,
+        "loudness": 0.311,
+        "spectralCentroid": 79.1,
+        "dissonance": 0.176,
+        "spectralComplexity": 22.2
+      },
+      "usable": false
+    },
+    {
+      "id": 23,
+      "name": "T24",
+      "x": 0.7,
+      "y": 0.9,
+      "values": {
+        "sharpness": 1.428,
+        "loudness": 98.38,
+        "spectralCentroid": 915.5,
+        "dissonance": 0.1108,
+        "spectralComplexity": 23.57
+      },
+      "sd": {
+        "sharpness": 0.00471,
+        "loudness": 0.00861,
+        "spectralCentroid": 3.69,
+        "dissonance": 0.0201,
+        "spectralComplexity": 1.26
+      },
+      "drift": {
+        "sharpness": 0.00933,
+        "loudness": 0.0581,
+        "spectralCentroid": 17.3,
+        "dissonance": 0.164,
+        "spectralComplexity": 4.67
+      },
+      "usable": false
+    },
+    {
+      "id": 24,
+      "name": "T25",
+      "x": 0.9,
+      "y": 0.9,
+      "values": {
+        "sharpness": 1.456,
+        "loudness": 96.23,
+        "spectralCentroid": 1240,
+        "dissonance": 0.3033,
+        "spectralComplexity": 25.2
+      },
+      "sd": {
+        "sharpness": 0.028,
+        "loudness": 0.0564,
+        "spectralCentroid": 11.4,
+        "dissonance": 0.0564,
+        "spectralComplexity": 5.38
+      },
+      "drift": {
+        "sharpness": 0.00733,
+        "loudness": 0.073,
+        "spectralCentroid": 5.29,
+        "dissonance": 0.00895,
+        "spectralComplexity": 4.73
+      },
+      "usable": true
+    }
+  ]
+}
